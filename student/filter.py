@@ -84,7 +84,20 @@ class Filter:
         ############
         # TODO Step 1: update state x and covariance P with associated measurement, save x and P in track
         ############
-        
+        X = track.x
+        P = track.P
+        H = meas.sensor.get_H(X)
+
+        gamma = self.gamma(track, meas)
+        S = self.S(track, meas, H)
+        K = P * H.transpose() * np.linalg.inv(S)
+        I = np.identity(self.dim_state)
+
+        x = X + K * gamma
+        P = (I -K * H) * P
+
+        track.set_x(x)
+        track.set_P(P)
         ############
         # END student code
         ############ 
@@ -94,8 +107,11 @@ class Filter:
         ############
         # TODO Step 1: calculate and return residual gamma
         ############
+        x = track.x
+        z = meas.z
+        hx = meas.sensor.get_hx(x)
 
-        return 0
+        return z - hx
         
         ############
         # END student code
@@ -105,8 +121,10 @@ class Filter:
         ############
         # TODO Step 1: calculate and return covariance of residual S
         ############
+        P = track.P
+        R = meas.R
 
-        return 0
+        return (H * P * H.transpose()) + R
         
         ############
         # END student code
