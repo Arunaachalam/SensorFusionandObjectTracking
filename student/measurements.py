@@ -82,7 +82,7 @@ class Sensor:
             # - return h(x)
             ############
 
-            vehicle_pos = np.zeros((4,1))
+            vehicle_pos = np.ones((4,1))
             vehicle_pos[0:3] = x[0:3]
             pos_camera = self.veh_to_sens * vehicle_pos
 

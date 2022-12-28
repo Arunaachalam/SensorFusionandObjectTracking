@@ -10,13 +10,13 @@ The project is set up in four parts
 For this section the following are done
 1. The configurations from the fpn-resnet model is copied from the previous 3D object detection mid term project. The initial RMSE had a mean of 5.59 for a single track, pre implementation.
 
-[![watch the video](https://img.youtube.com/vi/xxxxx/hqdefault.jpg)]()
+[![watch the video](https://img.youtube.com/vi/NlHvcc2k2Go/hqdefault.jpg)](https://youtu.be/NlHvcc2k2Go)
 
 ![alt text](./img/01_ModelLoad.png)
 
 2. As per the instruction, the predict, f, q, update, gamma and S functions are written, leading to the implenetation of a EKF. The mean RMSE is made to 0.32. There is a peak on RMSE but it will have to be removed in the next steps
 
-[![watch the video](https://img.youtube.com/vi/xxxxx/hqdefault.jpg)]()
+[![watch the video](https://img.youtube.com/vi/yD5D727XTQg/hqdefault.jpg)](https://youtu.be/yD5D727XTQg)
 
 ![alt text](./img/02_EKF.png)
 
@@ -27,7 +27,15 @@ For this section, the trackmanagement.py file is edited to implement a track man
 
 ![alt text](./img/03_TrackManagement.png)
 
+## Step 3: Implementing nearest neighbour data association
+For this section the association.py file is modified and the funcitons Associate, get_closest_track_and_meas, gating and MHD are implemented.
 
+[![watch the video](https://img.youtube.com/vi/xxxxx/hqdefault.jpg)]()
+
+![alt text](./img/04_association.png)
+
+## Step 4: Implementing non linear camera measurement model
+For the final section after the implementation, the 
 
 
 

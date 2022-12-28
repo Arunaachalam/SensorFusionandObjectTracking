@@ -50,12 +50,12 @@ class Track:
         self.state = 'confirmed'
         self.score = 0
         """
-        sensor_pos = np.zeros((4,1))
+        sensor_pos = np.ones((4,1))
         sensor_pos[0:3] = meas.z[0:3]
 
         vehicle_pos = meas.sensor.sens_to_veh * sensor_pos
 
-        self.x = np.zeros((6, 1))
+        self.x = np.ones((6, 1))
         self.x[0:3] = vehicle_pos[0:3]
 
         M_rotation = meas.sensor.sens_to_veh[0:3, 0:3]
