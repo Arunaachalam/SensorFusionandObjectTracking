@@ -24,14 +24,21 @@ import misc.params as params
 class Filter:
     '''Kalman filter class'''
     def __init__(self):
-        pass
+        self.q = params.q
+        self.dt = params.dt
+        self.dim_state = params.dim_state
 
     def F(self):
         ############
         # TODO Step 1: implement and return system matrix F
         ############
-
-        return 0
+        return np.matrix([[1, 0, 0, self.dt, 0, 0],
+                          [0, 1, 0, 0, self.dt, 0],
+                          [0, 0, 1, 0, 0, self.dt],
+                          [0, 0, 0, 1, 0, 0],
+                          [0, 0, 0, 0, 1, 0],
+                          [0, 0, 0, 0, 0, 1]
+                          ])
         
         ############
         # END student code
@@ -41,8 +48,17 @@ class Filter:
         ############
         # TODO Step 1: implement and return process noise covariance Q
         ############
+        eq1 = self.dt * self.q
+        eq2 = 1 / 2 * (self.dt ** 2) * self.q
+        eq3 = 1 / 3 * (self.dt ** 3) * self.q
 
-        return 0
+        return np.matrix([[eq3, 0, 0, eq2, 0, 0],
+                          [0, eq3, 0, 0, eq2, 0],
+                          [0, 0, eq3, 0, 0, eq2],
+                          [eq2, 0, 0, eq1, 0, 0],
+                          [0, eq2, 0, 0, eq1, 0],
+                          [0, 0, eq2, 0, 0, eq1]
+                          ])
         
         ############
         # END student code
@@ -52,8 +68,13 @@ class Filter:
         ############
         # TODO Step 1: predict state x and estimation error covariance P to next timestep, save x and P in track
         ############
+        F = self.F()
+        Q = self.Q()
+        x = F * track.x
+        P = F * track.P * F.transpose() + Q
 
-        pass
+        track.set_x(x)
+        track.set_P(P)
         
         ############
         # END student code
