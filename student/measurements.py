@@ -48,7 +48,18 @@ class Sensor:
         # otherwise False.
         ############
 
-        return True
+        pos = np.ones((4,1))
+        pos[0:3] = x[0:3]
+
+        pos = self.veh_to_sens * pos
+
+        if pos[0] > 0:
+            alpha = np.arctan(pos[1]/ pos[0])
+
+            if self.fov[0] < alpha < self.fov[1]:
+                return True
+
+        return False
         
         ############
         # END student code
@@ -71,7 +82,15 @@ class Sensor:
             # - return h(x)
             ############
 
-            pass
+            vehicle_pos = np.zeros((4,1))
+            vehicle_pos[0:3] = x[0:3]
+            pos_camera = self.veh_to_sens * vehicle_pos
+
+            h_x = np.zeros((2,1))
+            h_x[0][0] = self.c_i - self.f_i * (pos_camera[1]/pos_camera[0])
+            h_x[1][0] = self.c_j - self.f_j * (pos_camera[2]/pos_camera[0])
+
+            return h_x
         
             ############
             # END student code
@@ -115,9 +134,9 @@ class Sensor:
         # TODO Step 4: remove restriction to lidar in order to include camera as well
         ############
         
-        if self.name == 'lidar':
-            meas = Measurement(num_frame, z, self)
-            meas_list.append(meas)
+        #if self.name == 'lidar':
+        meas = Measurement(num_frame, z, self)
+        meas_list.append(meas)
         return meas_list
         
         ############
@@ -132,8 +151,6 @@ class Measurement:
     def __init__(self, num_frame, z, sensor):
         # create measurement object
         self.t = (num_frame - 1) * params.dt # time
-        self.sensor = sensor # sensor that generated this measurement
-        
         if sensor.name == 'lidar':
             sigma_lidar_x = params.sigma_lidar_x # load params
             sigma_lidar_y = params.sigma_lidar_y
@@ -142,6 +159,7 @@ class Measurement:
             self.z[0] = z[0]
             self.z[1] = z[1]
             self.z[2] = z[2]
+            self.sensor = sensor # sensor that generated this measurement
             self.R = np.matrix([[sigma_lidar_x**2, 0, 0], # measurement noise covariance matrix
                                 [0, sigma_lidar_y**2, 0], 
                                 [0, 0, sigma_lidar_z**2]])
@@ -153,10 +171,18 @@ class Measurement:
         elif sensor.name == 'camera':
             
             ############
-            # TODO Step 4: initialize camera measurement including z and R 
+            # TODO Step 4: initialize camera measurement including z, R, and sensor 
             ############
+            sigma_camera_x = params.sigma_cam_i
+            sigma_camera_y = params.sigma_cam_j
 
-            pass
+            self.z = np.zeros((sensor.dim_meas, 1))
+            self.z[0] = z[0]
+            self.z[1] = z[1]
+
+            self.sensor = sensor
+
+            self.R = np.matrix([[sigma_camera_x**2, 0], [0, sigma_camera_y**2]])
         
             ############
             # END student code
