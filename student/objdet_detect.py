@@ -62,6 +62,46 @@ def load_configs_model(model_name='darknet', configs=None):
         #######
         print("student task ID_S3_EX1-3")
 
+        configs.model_path = os.path.join(parent_path, 'tools', 'objdet_models', 'resnet')
+        configs.pretrained_filename = os.path.join(configs.model_path, 'pretrained', 'fpn_resnet_18_epoch_300.pth')
+        configs.arch = 'fpn_resnet'
+
+        configs.K = 50
+        configs.num_samples = None
+        configs.num_layers = 18
+        configs.num_workers = 1
+        configs.batch_size = 1
+        configs.peak_thresh = 0.2
+        configs.save_test_output = False
+        configs.output_format = 'image'
+        configs.output_video_fn = 'out_fpn_resnet'
+
+        configs.nms_thresh = 0.4
+        configs.conf_thresh = 0.5
+
+        configs.input_size = (608, 608)
+        configs.hm_size = (152, 152)
+        configs.down_ration = 4
+        configs.max_objects = 50
+
+        configs.imagenet_pretrained = False
+        configs.head_conv = 64
+        configs.num_classes = 3
+        configs.num_center_offset = 2
+        configs.num_z = 1
+        configs.num_dim = 3
+        configs.num_direction = 2
+
+        configs.heads = {
+            'hm_cen': configs.num_classes,
+            'cen_offset': configs.num_center_offset,
+            'direction': configs.num_direction,
+            'z_coor': configs.num_z,
+            'dim': configs.num_dim
+        }
+
+        configs.num_input_features = 4
+
         #######
         ####### ID_S3_EX1-3 END #######     
 
@@ -118,6 +158,8 @@ def create_model(configs):
         ####### ID_S3_EX1-4 START #######     
         #######
         print("student task ID_S3_EX1-4")
+
+        model = fpn_resnet.get_pose_net(configs.num_layers, configs.heads, configs.head_conv, configs.imagenet_pretrained)
 
         #######
         ####### ID_S3_EX1-4 END #######     
