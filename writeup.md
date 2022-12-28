@@ -23,26 +23,24 @@ For this section the following are done
 ## Step 2: Implementing track management and score
 For this section, the trackmanagement.py file is edited to implement a track manager. The functions manage_tracks, delete_track, and handle_updated_track are finished.
 
-[![watch the video](https://img.youtube.com/vi/xxxxx/hqdefault.jpg)]()
-
 ![alt text](./img/03_TrackManagement.png)
 
 ## Step 3: Implementing nearest neighbour data association
 For this section the association.py file is modified and the funcitons Associate, get_closest_track_and_meas, gating and MHD are implemented.
 
-[![watch the video](https://img.youtube.com/vi/xxxxx/hqdefault.jpg)]()
+[![watch the video](https://img.youtube.com/vi/zV5k6fx8LlA/hqdefault.jpg)](https://youtu.be/zV5k6fx8LlA)
 
 ![alt text](./img/04_association.png)
 
 ## Step 4: Implementing non linear camera measurement model
-For the final section after the implementation, the 
+For the final section after the implementation, the stray cars tracking are removed. 
+
+[![watch the video](https://img.youtube.com/vi/NAH8kvAq2FI/hqdefault.jpg)](https://youtu.be/
+NAH8kvAq2FI)
+
+![alt text](./img/05_measurement.png)
 
 
-
-
-[![watch the video](https://img.youtube.com/vi/iNKQFVtrr18/hqdefault.jpg)](https://youtu.be/iNKQFVtrr18)
-
-![alt text](./img/Graph.png)
 
 The camera-lidar fusion is an important aspect of an autonomous vehicle in sensing the environment around it. Different systems are also required to fill the gaps in the camera-lidar fusion, like adding Radars and pheripheral cameras.
 
