@@ -1,15 +1,12 @@
-# Writeup: Track 3D-Objects Over Time
+# Sensor Fusion and Object Tracking
 
-Please use this starter template to answer the following questions:
+In a set of four parts the object tracking and sensor fusion was achieved.
 
-### 1. Write a short recap of the four tracking steps and what you implemented there (filter, track management, association, camera fusion). Which results did you achieve? Which part of the project was most difficult for you to complete, and why?
+[![watch the video](https://img.youtube.com/vi/iNKQFVtrr18/hqdefault.jpg)](https://youtu.be/iNKQFVtrr18)
 
+![alt text](./img/Graph.png)
 
-### 2. Do you see any benefits in camera-lidar fusion compared to lidar-only tracking (in theory and in your concrete results)? 
+The camera-lidar fusion is an important aspect of an autonomous vehicle in sensing the environment around it. Different systems are also required to fill the gaps in the camera-lidar fusion, like adding Radars and pheripheral cameras.
 
-
-### 3. Which challenges will a sensor fusion system face in real-life scenarios? Did you see any of these challenges in the project?
-
-
-### 4. Can you think of ways to improve your tracking results in the future?
+The biggest challenge is the computation cost associated with this operation. New improved algorithms has to be introduced. And the code will not perform well in dark/foggy images as more improvement is needed in this aspect.
 
