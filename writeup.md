@@ -35,8 +35,7 @@ For this section the association.py file is modified and the funcitons Associate
 ## Step 4: Implementing non linear camera measurement model
 For the final section after the implementation, the stray cars tracking are removed. 
 
-[![watch the video](https://img.youtube.com/vi/NAH8kvAq2FI/hqdefault.jpg)](https://youtu.be/
-NAH8kvAq2FI)
+[![watch the video](https://img.youtube.com/vi/NAH8kvAq2FI/hqdefault.jpg)](https://youtu.be/NAH8kvAq2FI)
 
 ![alt text](./img/05_measurement.png)
 
